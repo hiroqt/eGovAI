@@ -8,8 +8,8 @@
     "dev": "vite",
     "echain:generate-wallet": "node scripts/generate-echain-wallet.mjs",
     "build": "tsc && vite build",
-    "test": "vitest",
-    "test:run": "vitest run",
+    "test": "node --test scripts/test-*.mjs",
+    "test:vitest": "vitest run",
     "preview": "vite preview",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
   },

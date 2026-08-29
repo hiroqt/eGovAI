@@ -6,7 +6,7 @@
     },
     {
       "source": "/integration-api/:path*",
-      "destination": "https://egov-ai-core-ws.oueg.info/:path*"
+      "destination": "https://platforms-api.e.gov.ph/egov-ai/:path*"
     },
     {
       "source": "/everify-api/:path*",
@@ -14,23 +14,28 @@
     },
     {
       "source": "/emessage-api/:path*",
-      "destination": "https://ws-message.e.gov.ph/:path*"
+      "destination": "https://platforms-api.e.gov.ph/emessage/:path*"
     },
     {
       "source": "/egovpay-api/:path*",
-      "destination": "https://egovpay-pgi-ws-dev.oueg.info/:path*"
+      "destination": "https://platforms-api.e.gov.ph/egovpay/:path*"
     },
     {
       "source": "/face-liveness-api/:path*",
       "destination": "https://platforms-api.e.gov.ph/face-liveness/:path*"
     },
     {
-      "source": "/compass-api/:path*",
-      "destination": "https://dbm-ws.oueg.info/:path*"
+      "source": "/ereport-api/:path*",
+      "destination": "https://platforms-api.e.gov.ph/ereport/:path*"
     },
     {
-      "source": "/((?!api|egov-api|integration-api|everify-api|emessage-api|egovpay-api|face-liveness-api|compass-api).*)",
+      "source": "/compass-api/:path*",
+      "destination": "https://platforms-api.e.gov.ph/compass/:path*"
+    },
+    {
+      "source": "/((?!api|egov-api|integration-api|everify-api|emessage-api|egovpay-api|face-liveness-api|ereport-api|compass-api).*)",
       "destination": "/index.html"
     }
   ]
 }
+

@@ -1,13 +1,10 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import {
-  authenticateWithEGovAccessToken,
   authenticateWithEGovExchangeCode,
   authenticateWithOtpAndPin,
   authenticateWithPin,
   checkPartnerAccess,
   EGovAuthenticationError,
-  exchangeEGovCodeForAccessToken,
-  fetchEGovProfile,
   generateOtp,
   mapEGovProfileToUser,
   validateOtp,

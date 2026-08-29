@@ -139,13 +139,15 @@ sequenceDiagram
 
 | Gateway Proxy Path | Remote Host Endpoint | Protocol | Purpose & Data Scope |
 | :--- | :--- | :---: | :--- |
-| `/egov-api` | `https://hackathon-sso.e.gov.ph` | `HTTPS` | **eGovPH Single Sign-On:** Exchanges authorization codes for citizen tokens; fetches verified personal records (Name, Birthdate, Address, PhilSys ID). |
-| `/face-liveness-api` | `https://hackathon-face-liveness-api.e.gov.ph` | `HTTPS` | **DICT Biometric Face Liveness:** Provides active anti-spoofing and face verification for high-security transactions. |
-| `/integration-api` | `https://egov-ai-core-ws.oueg.info` | `HTTPS` | **eGov AI Core Web Services:**<br>• `/ai_assistant/generate`: Contextual citizen chat.<br>• `/laws_and_regulations/generate`: Legal knowledge base.<br>• `/tourism/generate`: Travel & cultural inquiries.<br>• `/translator/generate`: Filipino transliteration.<br>• `/document_extractor/generate`: ID OCR parsing.<br>• `/speech_maker/generate`: Voice synthesis.<br>• `/credits`: Real-time API allowance tracking. |
-| `/egovpay-api` | `https://egovpay-pgi-ws-dev.oueg.info` | `HTTPS` | **eGovPay Gateway:** Settlement template routing, transaction creation, QRPh/PRN voucher generation, payment callbacks. |
-| `/compass-api` | `https://dbm-ws.oueg.info` | `HTTPS` | **DBM Budget Transparency (Compass):** Queries live fiscal records (SAAODB, NCA, SARO, and LGSF allocations) for local and national expenditures. |
-| `/everify-api` | `https://hackathon-everify-api.e.gov.ph` | `HTTPS` | **eVerify PhilSys Service:** Direct citizen verification against Philippine National ID registry. |
-| `/emessage-api` | `https://ws-message.e.gov.ph` | `HTTPS` | **eMessage Notifications:** Dispatches SMS receipts, application progress updates, and civic alerts. |
+| `/egov-api` | `https://platforms-api.e.gov.ph/egov-sso` | `HTTPS` | **eGovPH Single Sign-On:** Exchanges authorization codes for citizen tokens; fetches verified personal records (Name, Birthdate, Address, PhilSys ID). |
+| `/face-liveness-api` | `https://platforms-api.e.gov.ph/face-liveness` | `HTTPS` | **DICT Biometric Face Liveness:** Provides active anti-spoofing and face verification for high-security transactions. |
+| `/integration-api` | `https://platforms-api.e.gov.ph/egov-ai` | `HTTPS` | **eGov AI Core Web Services:**<br>• `/ai_assistant/generate`: Contextual citizen chat.<br>• `/laws_and_regulations/generate`: Legal knowledge base.<br>• `/tourism/generate`: Travel & cultural inquiries.<br>• `/translator/generate`: Filipino transliteration.<br>• `/document_extractor/generate`: ID OCR parsing.<br>• `/speech_maker/generate`: Voice synthesis.<br>• `/credits`: Real-time API credit allowance monitoring. |
+| `/egovpay-api` | `https://platforms-api.e.gov.ph/egovpay` | `HTTPS` | **eGovPay Gateway:** Settlement template routing, transaction creation, QRPh/PRN voucher generation, payment callbacks. |
+| `/ereport-api` | `https://platforms-api.e.gov.ph/ereport` | `HTTPS` | **eReport Incident Gateway:** Civic complaints, geotagged incident filings, municipal tracking. |
+| `/api/echain/*` | `https://hackathon-blockchain.e.gov.ph` | `JSON-RPC` | **eGovChain (Chain ID 13371):** Privacy-preserving cryptographic anchoring of verified payment confirmation hashes. |
+| `/compass-api` | `https://platforms-api.e.gov.ph/compass` | `HTTPS` | **DBM Budget Transparency (Compass):** Queries live fiscal records (SAAODB, NCA, SARO, and LGSF allocations) for local and national expenditures. |
+| `/everify-api` | `https://platforms-api.e.gov.ph/everify` | `HTTPS` | **eVerify PhilSys Service:** Direct citizen verification against Philippine National ID registry. |
+| `/emessage-api` | `https://platforms-api.e.gov.ph/emessage` | `HTTPS` | **eMessage Notifications:** Dispatches SMS receipts, application progress updates, and civic alerts. |
 
 ---
 

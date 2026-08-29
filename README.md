@@ -207,14 +207,15 @@ All external eGovPH endpoints are securely proxied to eliminate CORS barriers an
 
 | Local Proxy Path | Remote Target Endpoint | Protocol | Purpose & Integration Scope |
 | :--- | :--- | :---: | :--- |
-| `/egov-api` | `https://hackathon-sso.e.gov.ph` | `HTTPS` | **eGovPH Single Sign-On:** Authorization code exchange, partner token validation, verified citizen profile sync. |
-| `/face-liveness-api` | `https://hackathon-face-liveness-api.e.gov.ph` | `HTTPS` | **DICT Face Liveness API:** In-browser active anti-spoofing and biometric face validation. |
-| `/integration-api` | `https://egov-ai-core-ws.oueg.info` | `HTTPS` | **eGov AI Core Services:**<br>• `/ai_assistant/generate`: Contextual citizen assistance.<br>• `/laws_and_regulations/generate`: Legal and ordinance retrieval.<br>• `/tourism/generate`: Travel and cultural guides.<br>• `/translator/generate`: Filipino transliteration.<br>• `/document_extractor/generate`: ID OCR processing.<br>• `/speech_maker/generate`: Text-to-speech audio synthesis.<br>• `/credits`: Real-time API credit allowance monitoring. |
-| `/egovpay-api` | `https://egovpay-pgi-ws-dev.oueg.info` | `HTTPS` | **eGovPay Gateway:** Settlement template routing, transaction creation, PRN voucher generation, and payment callbacks. |
+| `/egov-api` | `https://platforms-api.e.gov.ph/egov-sso` | `HTTPS` | **eGovPH Single Sign-On:** Authorization code exchange, partner token validation, verified citizen profile sync. |
+| `/face-liveness-api` | `https://platforms-api.e.gov.ph/face-liveness` | `HTTPS` | **DICT Face Liveness API:** In-browser active anti-spoofing and biometric face validation. |
+| `/integration-api` | `https://platforms-api.e.gov.ph/egov-ai` | `HTTPS` | **eGov AI Core Services:**<br>• `/ai_assistant/generate`: Contextual citizen assistance.<br>• `/laws_and_regulations/generate`: Legal and ordinance retrieval.<br>• `/tourism/generate`: Travel and cultural guides.<br>• `/translator/generate`: Filipino transliteration.<br>• `/document_extractor/generate`: ID OCR processing.<br>• `/speech_maker/generate`: Text-to-speech audio synthesis.<br>• `/credits`: Real-time API credit allowance monitoring. |
+| `/egovpay-api` | `https://platforms-api.e.gov.ph/egovpay` | `HTTPS` | **eGovPay Gateway:** Settlement template routing, transaction creation, PRN voucher generation, and payment callbacks. |
+| `/ereport-api` | `https://platforms-api.e.gov.ph/ereport` | `HTTPS` | **eReport Gateway:** Civic grievance submission and incident tracking. |
 | `/api/echain/*` | `https://hackathon-blockchain.e.gov.ph` | `JSON-RPC` | **eGovChain (Chain ID 13371):** Privacy-preserving cryptographic anchoring of verified payment confirmation hashes. |
-| `/compass-api` | `https://dbm-ws.oueg.info` | `HTTPS` | **DBM Budget Transparency (Compass):** Real-time SAAODB, NCA, SARO, and LGSF budget expenditure records. |
-| `/everify-api` | `https://hackathon-everify-api.e.gov.ph` | `HTTPS` | **eVerify PhilSys Service:** Direct verification against the Philippine National ID registry. |
-| `/emessage-api` | `https://ws-message.e.gov.ph` | `HTTPS` | **eMessage Gateway:** SMS transaction receipts and critical citizen broadcast notifications. |
+| `/compass-api` | `https://platforms-api.e.gov.ph/compass` | `HTTPS` | **DBM Budget Transparency (Compass):** Real-time SAAODB, NCA, SARO, and LGSF budget expenditure records. |
+| `/everify-api` | `https://platforms-api.e.gov.ph/everify` | `HTTPS` | **eVerify PhilSys Service:** Direct verification against the Philippine National ID registry. |
+| `/emessage-api` | `https://platforms-api.e.gov.ph/emessage` | `HTTPS` | **eMessage Gateway:** SMS transaction receipts and critical citizen broadcast notifications. |
 
 ---
 
@@ -237,7 +238,7 @@ Paid donations retain their full append-only SHA-256 ledger in the client sessio
    ECHAIN_CHAIN_ID=13371
    ECHAIN_PRIVATE_KEY=0x...
    EGOVPAY_API_KEY=test_...
-   EGOVPAY_API_URL=https://egovpay-pgi-ws-dev.oueg.info
+   EGOVPAY_API_URL=https://platforms-api.e.gov.ph/egovpay
    ```
 
 4. During local development, `npm run dev` exposes equivalent `/api/echain/*` middleware on the Vite server. Production utilizes Vercel Serverless Functions.
@@ -284,7 +285,7 @@ Create a `.env` file in the project root:
 VITE_APP_BASE_URL=http://localhost:5173
 
 # eGovPH SSO Configuration
-VITE_EGOV_SSO_URL=https://hackathon-sso.e.gov.ph
+VITE_EGOV_SSO_URL=https://platforms-api.e.gov.ph/egov-sso
 VITE_API_BASE_URL=http://localhost:5173/api
 
 # eGovPH Partner Credentials (Hackathon)
@@ -292,16 +293,17 @@ VITE_EGOV_PARTNER_CODE=HACKATHON_SSO
 VITE_EGOV_PARTNER_SECRET=your_partner_secret_here
 
 # Face Liveness API Configuration (Proxied to avoid CORS)
-VITE_FACE_LIVENESS_URL=/face-liveness-api
+VITE_FACELIVENESS_URL=https://platforms-api.e.gov.ph/face-liveness
 VITE_FACE_LIVENESS_API_KEY=your_face_liveness_api_key
 
 # eGovPH AI Core Integration API
-VITE_EGOV_INTEGRATION_BASE_URL=https://egov-ai-core-ws.oueg.info
+VITE_EGOVAI_URL=https://platforms-api.e.gov.ph/egov-ai
 VITE_EGOV_ACCESS_CODE=your_access_code_here
 
 # eGovPay Development Gateway
+VITE_EGOVPAY_URL=https://platforms-api.e.gov.ph/egovpay
 VITE_EGOVPAY_API_KEY=test_your_egovpay_api_key_here
-VITE_EGOVPAY_SETTLEMENT_UUID=your_settlement_template_uuid_here
+VITE_EGOVPAY_SETTLEMENT_TEMPLATE_UUID=your_settlement_template_uuid_here
 VITE_SSS_RECORD_VERIFICATION_FEE=1
 
 # eGovChain Configuration
@@ -313,6 +315,7 @@ ECHAIN_EXPLORER_TX_URL_TEMPLATE=https://hackathon-explorer.e.gov.ph/tx/{txHash}
 ECHAIN_CHAIN_ID=13371
 
 # DBM Transparency Portal (Compass API)
+VITE_COMPASS_URL=https://platforms-api.e.gov.ph/compass
 VITE_COMPASS_API_KEY=your_compass_api_key_here
 
 # Environment Mode
