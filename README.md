@@ -245,6 +245,19 @@ Paid donations retain their full append-only SHA-256 ledger in the client sessio
 
 ---
 
+## 🔒 Security, Privacy & Reliability Architecture
+
+1. **Zero Client-Side Secret Leakage:**
+   - Partner secrets and private credentials are never exposed directly to the public web browser. All requests are routed through the configured proxy gateway (`/egov-api`, `/integration-api`, `/face-liveness-api`, etc.).
+2. **Ephemeral Biometric Frame Handling:**
+   - The Face Liveness camera stream is evaluated strictly in-memory. No raw citizen video frames or biometric face encodings are stored persistently on the client or local database.
+3. **Profile Integrity & Anti-Tampering:**
+   - Citizen identity fields (Full Name, Address, PhilSys UniqID) are locked upon eGovPH SSO authentication and cannot be arbitrarily modified during transaction submissions.
+4. **Resilient Rate-Limiting & Credit Monitoring:**
+   - eBuddy continuously monitors token expiration and remaining credit counts via the API, providing graceful fallback and caching when API thresholds are approached.
+
+---
+
 ## 🚀 Getting Started
 
 ### Prerequisites
@@ -334,8 +347,8 @@ eGovAI/
 ├── docs/                       # Architectural & SSO documentation
 │   ├── SYSTEM_ARCHITECTURE.md  # Comprehensive system architecture document
 │   └── EGOV_SSO_INTEGRATION.md # Detailed SSO protocol documentation
-├── scripts/                    # Utility scripts (wallet generation)
-├── server/                     # Local development mock & middleware servers
+├── scripts/                    # Utility scripts (e.g. wallet generation) and extensive integration test suites (`test-*.mjs`)
+├── server/                     # Local development middleware servers (including `eChainServer.ts` and custom Vite plugins)
 ├── src/
 │   ├── components/             # Reusable UI & Widget components
 │   │   ├── AppLayout.tsx       # Main navigation layout
@@ -398,7 +411,8 @@ eGovAI/
 | `npm run echain:generate-wallet` | Creates a dedicated test-only eGovChain signer in `.env.local` |
 | `npm run build` | Compiles TypeScript and builds production bundle in `dist/` |
 | `npm run preview` | Previews the production build locally |
-| `npm run test` | Runs the test suite via Vitest |
+| `npm run test` | Runs the Node.js API integration tests (`node --test scripts/test-*.mjs`) against live eGov platforms |
+| `npm run test:vitest` | Runs the frontend test suite via Vitest |
 | `npm run lint` | Checks codebase for linting errors |
 
 ---
